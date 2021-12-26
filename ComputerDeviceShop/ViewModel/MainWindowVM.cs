@@ -23,9 +23,9 @@ namespace ComputerDeviceShop.ViewModel
 
         public MainWindowVM(ICRUD crud, ICatalog catalog, IMainCategory maincateg, IMakeOrder order, IUser user, IDialogService dialog, int id)
         {
-            CatalogViewM = new CatalogVM(crud, catalog, maincateg);
+            CatalogViewM = new CatalogVM(crud, catalog, maincateg, id);
             BasketViewM = new BasketVM(crud, catalog, maincateg, order, id);
-            AccountViewM = new AccountVM(crud);
+            AccountViewM = new AccountVM(crud, id);
         }
     }
 }

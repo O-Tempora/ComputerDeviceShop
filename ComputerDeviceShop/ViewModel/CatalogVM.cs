@@ -19,6 +19,7 @@ namespace ComputerDeviceShop.ViewModel
         private readonly ICRUD _crud;
         private readonly ICatalog _catalog;
         private readonly IMainCategory _maincat;
+        private int _id;
 
         public ObservableCollection<MMainCategory> Mains { get; set; }
         private ObservableCollection<MGood> _Goods { get; set; }
@@ -35,11 +36,12 @@ namespace ComputerDeviceShop.ViewModel
             }
         }
         #endregion
-        public CatalogVM(ICRUD crud, ICatalog catalog, IMainCategory maincat)
+        public CatalogVM(ICRUD crud, ICatalog catalog, IMainCategory maincat, int customerID)
         {
             _crud = crud;
             _catalog = catalog;
             _maincat = maincat;
+            _id = customerID;
 
             var mains = _maincat.GetMainCategories(); //Получение главных категорий
             Mains = new ObservableCollection<MMainCategory>();
@@ -264,7 +266,7 @@ namespace ComputerDeviceShop.ViewModel
         {
             MBasket basket = new MBasket();
             basket.Good = _goodID;
-            basket.Customer = 2; //ПРИДУМАТЬ ЧЕРТОВУ РЕГИСТРАЦИЮ КУРСАЧ ГОРИТ
+            basket.Customer = _id;
             _crud.CreateBasket(basket);
             Messenger.Default.Send(new GenericMessage<MBasket>(null));
         }
