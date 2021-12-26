@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="ComputerDeviceShop.View.BasketUC"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerDeviceShop.View" xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" d:DataContext="{d:DesignInstance Type=viewmodel:BasketVM}"
+             mc:Ignorable="d" 
+             d:DesignHeight="680" d:DesignWidth="1500">
+    <Grid>
+        <Grid Background="#272537">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Background="#FF232323">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!--#region Модель товара в корзине-->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+                        <ListView x:Name="listView" HorizontalAlignment="Center" ItemsSource="{Binding Basket}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <ContentPresenter/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Margin" Value="0,10,0,10"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="IsSelected" Value="True"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="#272537" Height="220" Width="700">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="8*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="10" Source="{Binding Path=Picture}" Width="200" Height="200"/>
+                                        <Grid Grid.Row="0" Grid.Column="1">
+                                            <TextBlock Margin="10" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="{Binding Path=GoodName}" TextAlignment="Left" Width="400" Height="100" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Grid.Row="1" Grid.Column="1">
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                                <TextBlock Margin="5" TextWrapping="Wrap" Foreground="White" FontSize="20" Text="{Binding Path=ShowTotalCost}" TextAlignment="Left" Width="400" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="5" TextWrapping="Wrap" Foreground="White" FontSize="20" Text="{Binding Path=ShowSingleCost}" TextAlignment="Left" Width="400" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
+                                            <StackPanel Orientation="Vertical" Margin="2,10,2,10" VerticalAlignment="Center">
+                                                <Button
+                                                  Style="{StaticResource MaterialDesignPaperSecondaryButton}"
+                                                  Width="40"
+                                                  Margin="0,0,0,10"
+                                                  Command="{Binding Path=DataContext.IncreaseGoodCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding ElementName=listView, Path=SelectedIndex}"
+                                                  Background="Transparent" Foreground="GreenYellow">
+                                                    <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center"/>
+                                                </Button>
+                                                <TextBox IsEnabled="False" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="{Binding Path=Amount}"/>
+                                                <Button
+                                                  Style="{StaticResource MaterialDesignPaperSecondaryButton}"
+                                                  Width="40"
+                                                  Margin="0,10,0,0"
+                                                  Command="{Binding Path=DataContext.DecreaseGoodCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding ElementName=listView, Path=SelectedIndex}"
+                                                  Background="Transparent" Foreground="Red" BorderBrush="Red">
+                                                    <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center"/>
+                                                </Button>
+                                                <Button
+                                                  Style="{StaticResource MaterialDesignPaperSecondaryButton}"
+                                                  Width="40"
+                                                  Margin="0,45,0,0" BorderBrush="Aqua"
+                                                    Command="{Binding Path=DataContext.ClearCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding ElementName=listView, Path=SelectedIndex}"
+                                                  Background="Transparent" Foreground="Aqua">
+                                                    <materialDesign:PackIcon Kind="DeleteForever" HorizontalAlignment="Center" Width="20" Height="20"/>
+                                                </Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                    <!--#endregion-->
+                    <TextBlock Grid.Row="1" Visibility="{Binding EmptyVisibility}" Text="Здесь ничего нет" FontSize="20" Foreground="Aqua" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Text="Your Basket" FontSize="30" Foreground="Aqua" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/ComputerDeviceShop;component/Resources/#Readiculous"/>
+                    <Grid Grid.Row="2" HorizontalAlignment="Right">
+                        <Button
+                        Style="{StaticResource MaterialDesignPaperButton}"
+                        Width="250" Height="50" Margin="0,0,15,0"
+                        Content="Сделать заказ"
+                        Background="Transparent"
+                        Foreground="#FF58CCE6"
+                        FontSize="25" BorderBrush="#FF58CCE6"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</UserControl>
