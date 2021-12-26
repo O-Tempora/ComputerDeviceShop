@@ -23,5 +23,10 @@ namespace BLL.Models
             OSOrder = os.ord;
             Id = os.id;
         }
+
+        public string GoodName { get; set; }
+        public string ShowCost { get; set; }
+        public string ShowAmount { get; set; }
+        public string Picture { get; set; }
     }
 }

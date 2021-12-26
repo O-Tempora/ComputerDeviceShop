@@ -109,11 +109,29 @@
                         Content="Сделать заказ"
                         Background="Transparent"
                         Foreground="#FF58CCE6"
+                        Command="{Binding FinishOrder}"
                         FontSize="25" BorderBrush="#FF58CCE6"/>
                     </Grid>
                 </Grid>
             </Grid>
         </Grid>
-        
+        <Grid Visibility="{Binding ResultingMessageVisibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1" Background="#FF232323">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding ResultingText}" Foreground="Aqua" FontSize="30" HorizontalAlignment="Center" Margin="0,0,0,60" TextWrapping="Wrap"/>
+                    <Button Content="Готово" Width="100" Foreground="Aqua" Background="Transparent" Command="{Binding Return}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

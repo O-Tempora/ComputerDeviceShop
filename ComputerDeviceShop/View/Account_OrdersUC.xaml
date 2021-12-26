@@ -9,6 +9,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="1500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3.5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0" Background="#FF232323">
             
+        </Grid>
+
+        <Grid Grid.Column="1" Background="#272537">
+            
+        </Grid>
     </Grid>
 </UserControl>

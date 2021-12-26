@@ -19,7 +19,9 @@ namespace ComputerDeviceShop.ViewModel
         private readonly IMainCategory _maincat;
         private readonly IMakeOrder _order;
         private readonly int _userID;
-        public BasketVM(ICRUD crud, ICatalog catalog, IMainCategory maincat, IMakeOrder order, int userID = 1)
+        public delegate void DialogHandler(int id);
+        public event DialogHandler OrderSuccessfullyMade;
+        public BasketVM(ICRUD crud, ICatalog catalog, IMainCategory maincat, IMakeOrder order, int userID)
         {
             _crud = crud;
             _catalog = catalog;
@@ -30,6 +32,8 @@ namespace ComputerDeviceShop.ViewModel
             EmptyVisibility = "Visible"; //Значения по умолчанию
             OrderShowVisibility = "Hidden";
             OrderIsAvailable = false;
+            _resultingText = "";
+            _resultingMessageVisibility = "Hidden";
 
             Messenger.Default.Register<GenericMessage<MBasket>>(this, Update);
         }
@@ -233,6 +237,82 @@ namespace ComputerDeviceShop.ViewModel
         private void HideMakeOrder(object args)
         {
             OrderShowVisibility = "Hidden";
+        }
+
+        private ICommand _finishOrder;
+        public ICommand FinishOrder
+        {
+            get
+            {
+                if (_finishOrder == null)
+                    _finishOrder = new RelayCommand(args => Finish(args));
+                return _finishOrder;
+            }
+        }
+
+        private void Finish(object args)
+        {
+            try
+            {
+                ResultingMessageVisibility = "Visible";
+                if (_order.MakeOrder(_userID, _totalCost, Basket) == 1)
+                {
+                    ResultingText = "Заказ успешно создан";
+                    OrderSuccessfullyMade?.Invoke(0);
+                }
+            }
+            catch(Exception e)
+            {
+                ResultingText = "Ошибка в создании заказа";
+
+            }
+            finally
+            {
+                ReevaluateOrder();
+            }
+        }
+
+        private string _resultingText;
+        public string ResultingText
+        {
+            get
+            {
+                return _resultingText;
+            }
+            set
+            {
+                _resultingText = value;
+                NotifyPropertyChanged("ResultingText");
+            }
+        }
+        private string _resultingMessageVisibility;
+        public string ResultingMessageVisibility
+        {
+            get
+            {
+                return _resultingMessageVisibility;
+            }
+            set
+            {
+                _resultingMessageVisibility = value;
+                NotifyPropertyChanged("ResultingMessageVisibility");
+            }
+        }
+
+        private ICommand _return;
+        public ICommand Return
+        {
+            get
+            {
+                if (_return == null)
+                    _return = new RelayCommand(args => ReturnToBasket(args));
+                return _return;
+            }
+        }
+
+        private void ReturnToBasket(object args)
+        {
+            ResultingMessageVisibility = "Hidden";
         }
 
         #endregion
