@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerDeviceShop.View" 
-             xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CatalogVM}"
+             xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="680" d:DesignWidth="1500">
     <Grid>
@@ -87,7 +87,7 @@
         </Grid>
         <!--#endregion-->
 
-        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Hidden" Name="GoodGrid" Background="#272537">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="{Binding InfoIsVisible}" Name="GoodGrid" Background="#272537">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="9*"/>
@@ -130,7 +130,7 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="4">
-                <Button Style="{StaticResource MaterialDesignPaperButton}" Width="220" Height="80" Background="Transparent">
+                <Button Style="{StaticResource MaterialDesignPaperButton}" Width="220" Height="80" Background="Transparent" Command="{Binding Add}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="BasketPlus" Foreground="White" Height="45" Width="50"/>
                         <TextBlock Foreground="White" FontSize="20" Text="Добавить в корзину" TextWrapping="Wrap" Height="55" Width="150"/>

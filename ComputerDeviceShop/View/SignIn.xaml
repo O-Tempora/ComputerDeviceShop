@@ -231,7 +231,7 @@
                     Foreground="White"
                     FontSize="16"
                     Text="{Binding NewPhone, StringFormat={}{0:+#-###-###-##-##}}"
-                    materialDesign:HintAssist.Hint="Повторите пароль"
+                    materialDesign:HintAssist.Hint="Номер телефона"
                     materialDesign:HintAssist.Background="#FF373838"
                     materialDesign:HintAssist.Foreground="White"
                     materialDesign:HintAssist.HelperTextFontSize="14"
@@ -248,9 +248,12 @@
                     materialDesign:HintAssist.Foreground="White"
                     materialDesign:HintAssist.HelperTextFontSize="14"
                     Text="{Binding NewType}"
-                    Width="500" Height="55">
-                        <TextBlock>Физическое</TextBlock>
-                        <TextBlock>Юридическое</TextBlock>
+                    Width="500" Height="55" materialDesign:ColorZoneAssist.Background="Transparent">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF373838"/>
+                        </ComboBox.Resources>
+                        <TextBlock Background="#FF373838" Foreground="White" FontSize="14">Физическое</TextBlock>
+                        <TextBlock Background="#FF373838" Foreground="White" FontSize="14">Юридическое</TextBlock>
                     </ComboBox>
                 </StackPanel>
             </Grid>

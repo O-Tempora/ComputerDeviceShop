@@ -114,8 +114,10 @@
     <Compile Include="Util\IDialogService.cs" />
     <Compile Include="Util\NinjectRegistration.cs" />
     <Compile Include="ViewModel\AccountVM.cs" />
+    <Compile Include="ViewModel\Account_AboutVM.cs" />
     <Compile Include="ViewModel\Account_AboutUC.cs" />
     <Compile Include="ViewModel\Account_OrdersVM.cs" />
+    <Compile Include="ViewModel\Account_StatsVM.cs" />
     <Compile Include="ViewModel\BasketVM.cs" />
     <Compile Include="ViewModel\CatalogVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />

@@ -25,9 +25,10 @@ namespace ComputerDeviceShop
             IMainCategory _mainServ = kernel.Get<IMainCategory>();
             IMakeOrder _orderServ = kernel.Get<IMakeOrder>();
             IUser _userServ = kernel.Get<IUser>();
+            IAccount _accServ = kernel.Get<IAccount>();
             //MainWindow mw = new MainWindow(_crudServ, _catalogServ, _mainServ, _orderServ, _userServ);
             //mw.Show();
-            SignIn si = new SignIn(_crudServ, _catalogServ, _mainServ, _userServ, _orderServ);
+            SignIn si = new SignIn(_crudServ, _catalogServ, _mainServ, _accServ, _userServ, _orderServ);
             si.Show();
         }
     }

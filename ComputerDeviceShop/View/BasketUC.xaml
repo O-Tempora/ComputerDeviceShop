@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ComputerDeviceShop.View" xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" d:DataContext="{d:DesignInstance Type=viewmodel:BasketVM}"
+             xmlns:local="clr-namespace:ComputerDeviceShop.View" xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="1500">
     <Grid>
@@ -100,7 +100,7 @@
                         </ListView>
                     </ScrollViewer>
                     <!--#endregion-->
-                    <TextBlock Grid.Row="1" Visibility="{Binding EmptyVisibility}" Text="Здесь ничего нет" FontSize="20" Foreground="Aqua" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    
                     <TextBlock Grid.Row="0" Text="Your Basket" FontSize="30" Foreground="Aqua" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/ComputerDeviceShop;component/Resources/#Readiculous"/>
                     <Grid Grid.Row="2" HorizontalAlignment="Right">
                         <Button

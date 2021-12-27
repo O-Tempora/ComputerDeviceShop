@@ -31,7 +31,7 @@ namespace BLL.Services
             order.order_date = DateTime.Now.Date;
             order.status = 1;
             order.total_cost = totalCost;
-            order.arrival_date = null;
+            order.arrival_date = order.order_date.AddDays(7);
             _uow.Orders.Create(order);
             if (_uow.Save() <= 0)
                 return 0;
@@ -51,7 +51,7 @@ namespace BLL.Services
                 good.current_amount -= item.Amount;
 
                 _uow.Goods.Update(good);
-                _uow.OrdStrings.Update(os);
+                _uow.OrdStrings.Create(os);
             }
 
             var baskets = _uow.Baskets.GetList();

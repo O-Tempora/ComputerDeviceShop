@@ -22,10 +22,10 @@ namespace ComputerDeviceShop
     /// </summary>
     public partial class SignIn : Window
     {
-        public SignIn(ICRUD crud, ICatalog catalog, IMainCategory maincat, IUser user, IMakeOrder order)
+        public SignIn(ICRUD crud, ICatalog catalog, IMainCategory maincat, IAccount account, IUser user, IMakeOrder order)
         {
             InitializeComponent();
-            UserVM uvm = new UserVM(crud, catalog, maincat, user, new DialogService(), order);
+            UserVM uvm = new UserVM(crud, catalog, maincat, account, user, new DialogService(), order);
             DataContext = uvm;
             uvm.Notify += CloseThis;
         }

@@ -3,6 +3,7 @@ using BLL.Models;
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,15 @@ namespace BLL.Services
             var allStrings = _uow.OrdStrings.GetList();
             List<MOrder> specOrders = allOrders
                 .Where(i => i.customer == customerID)
-                .Select(i => new MOrder { Id = i.id, OCustomer = i.customer, Cost = i.total_cost, OStatus = i.status, ArrOrder = (DateTime)i.arrival_date, OrdOrder = i.order_date, Ostrings = new System.Collections.ObjectModel.ObservableCollection<MOrder_String>() }).ToList();
+                .Select(i => new MOrder { Id = i.id, 
+                    OCustomer = i.customer, 
+                    Cost = i.total_cost, 
+                    OStatus = i.status, 
+                    ArrOrder = (DateTime)i.arrival_date, 
+                    OrdOrder = i.order_date, 
+                    Ostrings = new ObservableCollection<MOrder_String>() 
+                }).ToList();
+
             foreach (var order in specOrders)
             {
                 foreach (var oString in allStrings)

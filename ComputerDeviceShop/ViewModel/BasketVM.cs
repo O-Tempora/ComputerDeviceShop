@@ -29,11 +29,12 @@ namespace ComputerDeviceShop.ViewModel
             _userID = userID;
             _order = order;
 
-            EmptyVisibility = "Visible"; //Значения по умолчанию
             OrderShowVisibility = "Hidden";
             OrderIsAvailable = false;
             _resultingText = "";
             _resultingMessageVisibility = "Hidden";
+
+            ReevaluateOrder();
 
             Messenger.Default.Register<GenericMessage<MBasket>>(this, Update);
         }
@@ -55,19 +56,6 @@ namespace ComputerDeviceShop.ViewModel
             {
                 _basket = value;
                 NotifyPropertyChanged("Basket");
-            }
-        }
-        private string _emptyVisibility;
-        public string EmptyVisibility
-        {
-            get
-            {
-                return _emptyVisibility;
-            }
-            set
-            {
-                _emptyVisibility = value;
-                NotifyPropertyChanged("EmptyVisibility");
             }
         }
         private string _orderShowVisibility;
@@ -118,12 +106,10 @@ namespace ComputerDeviceShop.ViewModel
             _totalCost = 0;
             if (Basket.Count != 0) //Есть ли товары в корзине
             {
-                EmptyVisibility = "Hidden";
                 OrderIsAvailable = true;
             }
             else
             {
-                EmptyVisibility = "Visible";
                 OrderIsAvailable = false;
             }
             foreach (var item in items)
@@ -182,9 +168,12 @@ namespace ComputerDeviceShop.ViewModel
 
         private void Decrease(object args)
         {
-            Basket[(int)args].Amount--;
-            _crud.UpdateBasket(Basket[(int)args]);
-            ReevaluateOrder();
+            if (Basket[(int)args].Amount > 0)
+            {
+                Basket[(int)args].Amount--;
+                _crud.UpdateBasket(Basket[(int)args]);
+                ReevaluateOrder();
+            }
         }
 
         private ICommand _clearCommand;
@@ -255,16 +244,20 @@ namespace ComputerDeviceShop.ViewModel
             try
             {
                 ResultingMessageVisibility = "Visible";
+                if (Basket == null || Basket.Count == 0)
+                {
+                    ResultingText = "Ваша корзина пуста!";
+                    return;
+                }
                 if (_order.MakeOrder(_userID, _totalCost, Basket) == 1)
                 {
                     ResultingText = "Заказ успешно создан";
                     OrderSuccessfullyMade?.Invoke(0);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ResultingText = "Ошибка в создании заказа";
-
             }
             finally
             {

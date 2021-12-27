@@ -42,6 +42,7 @@ namespace ComputerDeviceShop.ViewModel
             _catalog = catalog;
             _maincat = maincat;
             _id = customerID;
+            _infoIsVisible = "Hidden";
 
             var mains = _maincat.GetMainCategories(); //Получение главных категорий
             Mains = new ObservableCollection<MMainCategory>();
@@ -272,37 +273,37 @@ namespace ComputerDeviceShop.ViewModel
         }
         #endregion
 
-        //private bool _infoIsVisible;
-        //public bool InfoIsVisible
-        //{
-        //    get
-        //    {
-        //        return _infoIsVisible;
-        //    }
-        //    set
-        //    {
-        //        _infoIsVisible = value;
-        //        NotifyPropertyChanged("InfoIsVisible");
-        //    }
-        //}
-        //private ICommand _backToCatalog;
-        //public ICommand BackToCatalog
-        //{
-        //    get
-        //    {
-        //        if (_backToCatalog == null)
-        //        {
-        //            _backToCatalog = new RelayCommand(args => ToCatalog(args));
-        //        }
+        private string _infoIsVisible;
+        public string InfoIsVisible
+        {
+            get
+            {
+                return _infoIsVisible;
+            }
+            set
+            {
+                _infoIsVisible = value;
+                NotifyPropertyChanged("InfoIsVisible");
+            }
+        }
+        private ICommand _backToCatalog;
+        public ICommand BackToCatalog
+        {
+            get
+            {
+                if (_backToCatalog == null)
+                {
+                    _backToCatalog = new RelayCommand(args => ToCatalog(args));
+                }
 
-        //        return _backToCatalog;
-        //    }
-        //}
+                return _backToCatalog;
+            }
+        }
 
-        //private void ToCatalog(object args)
-        //{
-        //    InfoIsVisible = false;
-        //}
+        private void ToCatalog(object args)
+        {
+            InfoIsVisible = "Hidden";
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void NotifyPropertyChanged(string propertyName)
         {

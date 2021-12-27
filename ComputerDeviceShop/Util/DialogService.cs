@@ -9,9 +9,9 @@ namespace ComputerDeviceShop.Util
 {
     public class DialogService : IDialogService
     {
-        public void MW(ICRUD crud, ICatalog catalog, IMainCategory main, IMakeOrder order, IUser user, IDialogService dialog, int id)
+        public void MW(ICRUD crud, ICatalog catalog, IMainCategory main, IAccount account, IMakeOrder order, IUser user, IDialogService dialog, int id)
         {
-            MainWindow mw = new MainWindow(crud, catalog, main, order, user, dialog, id);
+            MainWindow mw = new MainWindow(crud, catalog, main, account, order, user, dialog, id);
             mw.Show();
         }
     }

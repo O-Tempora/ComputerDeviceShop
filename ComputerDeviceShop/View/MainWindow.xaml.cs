@@ -23,10 +23,10 @@ namespace ComputerDeviceShop
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(ICRUD crudServ, ICatalog catalogServ, IMainCategory mainServ, IMakeOrder order, IUser user, IDialogService dialog, int id)
+        public MainWindow(ICRUD crudServ, ICatalog catalogServ, IMainCategory mainServ, IAccount account, IMakeOrder order, IUser user, IDialogService dialog, int id)
         {
             InitializeComponent();
-            DataContext = new MainWindowVM(crudServ, catalogServ, mainServ, order, user, dialog, id);
+            DataContext = new MainWindowVM(crudServ, catalogServ, mainServ, account, order, user, dialog, id);
         }
     }
 }

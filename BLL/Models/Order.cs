@@ -28,5 +28,11 @@ namespace BLL.Models
             OStatus = o.status;
             OCustomer = o.customer;
         }
+
+        public string ShowNumber { get; set; }
+        public string ShowOrderDate { get; set; }
+        public string ShowArrivalDate { get; set; }
+        public string ShowStatus { get; set; }
+        public string ShowTotal { get; set; }
     }
 }

@@ -5,21 +5,166 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ComputerDeviceShop.View"
+             xmlns:local="clr-namespace:ComputerDeviceShop.View" xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel" 
              mc:Ignorable="d" 
-             d:DesignHeight="680" d:DesignWidth="1500">
+             d:DesignHeight="600" d:DesignWidth="1500">
+    <UserControl.Resources>
+        <!--#region Для строки-->
+        <DataTemplate x:Key="StringTemplate">
+            <Grid Background="#FF232323">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <Image Source="{Binding Path=Picture}" Height="100" Width="100"/>
+                </StackPanel>
+                <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Foreground="White" FontSize="20" Text="{Binding Path=GoodName}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Foreground="White" FontSize="20" Text="{Binding Path=ShowCost}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock Foreground="White" FontSize="20" Text="{Binding Path=ShowAmount}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <!--#endregion-->
+        
+        <!--#region Для заказа-->
+        <DataTemplate x:Key="OrderTemplate">
+            <Grid Background="#FF232323" Width="800">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Center" Foreground="Aqua" FontSize="30" Text="{Binding Path=ShowNumber}" HorizontalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Grid.Row="0" VerticalAlignment="Center" Foreground="White" FontSize="20" Text="{Binding Path=ShowOrderDate}"/>
+                    <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" Foreground="White" FontSize="20" Text="{Binding Path=ShowArrivalDate}"/>-->
+                    <TextBlock Grid.Row="0" VerticalAlignment="Center" Foreground="White" FontSize="20" Text="{Binding Path=ShowTotal}"/>
+                    <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" Foreground="White" FontSize="20" Text="{Binding Path=ShowStatus}"/>-->
+                </StackPanel>
+                <Expander Grid.Row="2" HorizontalAlignment="Stretch" Header="Подробности о заказе: " Foreground="White" Background="Black" FontSize="18" FontWeight="DemiBold">
+                    <ScrollViewer Background="#FF232323" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ListView  materialDesign:ListBoxItemAssist.ShowSelection="False"  x:Name="GoodsList" ItemsSource="{Binding Path=Ostrings}" ItemTemplate="{StaticResource StringTemplate}" HorizontalContentAlignment="Center">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <ContentPresenter/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Margin" Value="0,10,0,10"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="IsSelected" Value="True"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </ScrollViewer>
+                </Expander>
+            </Grid>
+        </DataTemplate>
+        <!--#endregion-->
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="3.5*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         
+        <!--#region Боковая панель-->
         <Grid Grid.Column="0" Background="#FF232323">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="Aqua" FontSize="35" Text="Просмотр ваших заказов" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Padding="10" FontWeight="Bold"/>
+            <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Button
+                  Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                  Content="Все заказы" Margin="0,25,0,0"
+                  Width="200" Height="60"
+                  FontSize="25" Foreground="Aqua" 
+                  Command="{Binding GetAllCommand}"
+                  Background="Transparent" BorderBrush="Aqua"
+                  />
+                <!--<Button
+                  Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                  Content="По дате" Margin="0,25,0,0"
+                  Width="200" Height="60"
+                  FontSize="25" Foreground="Aqua" 
+                  Background="Transparent" BorderBrush="Aqua"
+                  />
+                <Button
+                  Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                  Content="По стоимости" Margin="0,25,0,0"
+                  Width="200" Height="60"
+                  FontSize="25" Foreground="Aqua" 
+                  Background="Transparent" BorderBrush="Aqua"
+                  />-->
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <ComboBox Height="45" Width="270" BorderBrush="Aqua" Foreground="Aqua" Background="#FF232323"
+                FontSize="25" Margin="0,40,0,0"
+                ItemsSource="{Binding Statuses}"
+                SelectedIndex="{Binding SelectedStatus}">
+                    <ComboBox.Resources>
+                        <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF232323"/>
+                    </ComboBox.Resources>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}" Background="#FF232323" Foreground="White"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button
+                  Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                  Content="Найти" Margin="0,40,0,0"
+                  Width="200" Height="60"
+                  FontSize="25" Foreground="Aqua" 
+                  Command="{Binding GetByStatusCommand}"
+                  Background="Transparent" BorderBrush="Aqua"
+                  />
+            </StackPanel>
         </Grid>
-
-        <Grid Grid.Column="1" Background="#272537">
-            
-        </Grid>
+        <!--#endregion-->
+        
+        <!--#region Заказы-->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Background="#272537">
+            <ListView HorizontalContentAlignment="Center" ItemsSource="{Binding Orders}" ItemTemplate="{StaticResource OrderTemplate}" materialDesign:ListBoxItemAssist.ShowSelection="False">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Margin" Value="0,15,0,15"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="IsSelected" Value="True"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </ScrollViewer>
+        <!--#endregion-->
     </Grid>
 </UserControl>
