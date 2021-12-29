@@ -109,7 +109,7 @@ namespace ComputerDeviceShop.ViewModel
 
         private void GetByStatus(object args)
         {
-            var orders = _account.GetAllOrdersByStatus(_customerID, SelectedStatus);
+            var orders = _account.GetAllOrdersByStatus(_customerID, SelectedStatus + 1);
             Orders.Clear();
             foreach (var ord in orders)
             {

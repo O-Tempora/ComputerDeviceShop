@@ -167,5 +167,12 @@ namespace BLL
             _dbr.Customers.Create(c);
             Save();
         }
+
+        public void UpdateOrder(MOrder order)
+        {
+            Order o = _dbr.Orders.Get(order.Id);
+            o.status = order.OStatus;
+            Save();
+        }
     }
 }

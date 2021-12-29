@@ -18,16 +18,18 @@ namespace ComputerDeviceShop.ViewModel
         private readonly ICatalog _catalog;
         private readonly IMainCategory _maincat;
         private readonly IMakeOrder _order;
+        private readonly IFile _file;
         private readonly int _userID;
         public delegate void DialogHandler(int id);
         public event DialogHandler OrderSuccessfullyMade;
-        public BasketVM(ICRUD crud, ICatalog catalog, IMainCategory maincat, IMakeOrder order, int userID)
+        public BasketVM(ICRUD crud, ICatalog catalog, IMainCategory maincat, IMakeOrder order, int userID, IFile file)
         {
             _crud = crud;
             _catalog = catalog;
             _maincat = maincat;
             _userID = userID;
             _order = order;
+            _file = file;
 
             OrderShowVisibility = "Hidden";
             OrderIsAvailable = false;
@@ -306,6 +308,24 @@ namespace ComputerDeviceShop.ViewModel
         private void ReturnToBasket(object args)
         {
             ResultingMessageVisibility = "Hidden";
+        }
+
+        private ICommand _getCheck;
+        public ICommand GetCheck
+        {
+            get
+            {
+                if (_getCheck == null)
+                    _getCheck = new RelayCommand(args => SaveCheck(args));
+                return _getCheck;
+            }
+        }
+
+        private void SaveCheck(object args)
+        {
+            var orders = _crud.GetOrders();
+            _file.PrintChck(orders[orders.Count - 1].Id);
+            ReturnToBasket(0);
         }
 
         #endregion

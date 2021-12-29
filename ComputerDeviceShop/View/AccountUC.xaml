@@ -10,12 +10,12 @@
              d:DesignHeight="680" d:DesignWidth="1500">
     <Grid Background="#272537">
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
             <RowDefinition/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" Background="#FF232323"/>
-        <TabControl Grid.Row="1" Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-        materialDesign:ColorZoneAssist.Mode="Standard" Background="#FF232323" HorizontalAlignment="Center" TabStripPlacement="Top" >
+        <TabControl Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+        materialDesign:ColorZoneAssist.Mode="Standard" Background="#FF232323" TabStripPlacement="Top" 
+        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <TabItem Width="150">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto" Orientation="Vertical" HorizontalAlignment="Center">
@@ -32,7 +32,7 @@
                         <TextBlock Text="Заказы" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
                     </StackPanel>
                 </TabItem.Header>
-                <view:Account_OrdersUC Margin="-525,-667,-525,85" DataContext="{Binding Account_Orders_View_M}"/>
+                <view:Account_OrdersUC DataContext="{Binding Account_Orders_View_M}"/>
             </TabItem>
             <TabItem Width="150">
                 <TabItem.Header>
@@ -41,7 +41,7 @@
                         <TextBlock Text="Об аккаунте" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
                     </StackPanel>
                 </TabItem.Header>
-                <view:Account_AboutUC Margin="-525,-667,-524,85" DataContext="{Binding Account_About_View_M}"/>
+                <view:Account_AboutUC DataContext="{Binding Account_About_View_M}"/>
             </TabItem>
         </TabControl>
     </Grid>

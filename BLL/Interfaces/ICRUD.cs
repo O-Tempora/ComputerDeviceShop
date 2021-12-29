@@ -34,6 +34,7 @@ namespace BLL.Interfaces
         MBasket GetBasket(int id);
         void CreateBasket(MBasket basket);
         void UpdateBasket(MBasket basket);
+        void UpdateOrder(MOrder order);
         void DeleteBasket(int id);
         void CreateCustomer(MCustomer customer);
     }

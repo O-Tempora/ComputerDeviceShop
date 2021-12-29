@@ -21,10 +21,10 @@ namespace ComputerDeviceShop.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public MainWindowVM(ICRUD crud, ICatalog catalog, IMainCategory maincateg, IAccount account, IMakeOrder order, IUser user, IDialogService dialog, int id)
+        public MainWindowVM(ICRUD crud, ICatalog catalog, IMainCategory maincateg, IAccount account, IMakeOrder order, IUser user, IDialogService dialog, int id, IFile file)
         {
             CatalogViewM = new CatalogVM(crud, catalog, maincateg, id);
-            BasketViewM = new BasketVM(crud, catalog, maincateg, order, id);
+            BasketViewM = new BasketVM(crud, catalog, maincateg, order, id, file);
             AccountViewM = new AccountVM(crud, account, catalog, maincateg, order, id);
         }
     }

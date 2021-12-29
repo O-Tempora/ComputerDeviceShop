@@ -20,8 +20,8 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -41,26 +41,27 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Имя пользователя:    " FontSize="25" Foreground="Aqua" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding UserName}" FontSize="30" Foreground="White"/>
+                        <TextBlock Text="Имя пользователя:    " FontSize="20" Foreground="Aqua" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UserName}" FontSize="25" Foreground="White"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Логин:    " FontSize="25" Foreground="Aqua" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding UserLogin}" FontSize="30" Foreground="White"/>
+                        <TextBlock Text="Логин:    " FontSize="20" Foreground="Aqua" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UserLogin}" FontSize="25" Foreground="White"/>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Пароль:    " FontSize="25" Foreground="Aqua" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding UserPassword}" FontSize="30" Foreground="White"/>
+                        <TextBlock Text="Пароль:    " FontSize="20" Foreground="Aqua" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UserPassword}" FontSize="25" Foreground="White"/>
                     </StackPanel>
                     <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Привязанный номер:    " FontSize="25" Foreground="Aqua" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding UserPhone}" FontSize="30" Foreground="White"/>
+                        <TextBlock Text="Привязанный номер:    " FontSize="20" Foreground="Aqua" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UserPhone}" FontSize="25" Foreground="White"/>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Тип лица:    " FontSize="25" Foreground="Aqua" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding UserType}" FontSize="30" Foreground="White"/>
+                        <TextBlock Text="Тип лица:    " FontSize="20" Foreground="Aqua" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UserType}" FontSize="25" Foreground="White"/>
                     </StackPanel>
                 </Grid>
             </Grid>

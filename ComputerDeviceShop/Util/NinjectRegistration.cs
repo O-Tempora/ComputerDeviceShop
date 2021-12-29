@@ -20,6 +20,7 @@ namespace ComputerDeviceShop.Util
             Bind<IUser>().To<UserService>();
             Bind<IMakeOrder>().To<MakeOrderService>();
             Bind<IAccount>().To<AccountService>();
+            Bind<IFile>().To<FileService>();
         }
     }
 }

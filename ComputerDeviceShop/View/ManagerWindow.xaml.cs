@@ -13,20 +13,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerDeviceShop
+namespace ComputerDeviceShop.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ManagerWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ManagerWindow : Window
     {
-        public MainWindow(ICRUD crudServ, ICatalog catalogServ, IMainCategory mainServ, IAccount account, IMakeOrder order, IUser user, IDialogService dialog, int id, IFile file)
+        public ManagerWindow(ICRUD crudServ, ICatalog catalogServ, IMainCategory mainServ, IAccount account, IMakeOrder order, IUser user, IDialogService dialog, int id, IFile file)
         {
             InitializeComponent();
-            DataContext = new MainWindowVM(crudServ, catalogServ, mainServ, account, order, user, dialog, id, file);
+            DataContext = new ManagerWindowVM(crudServ, catalogServ, mainServ, account, order, user, dialog, id, file);
         }
     }
 }

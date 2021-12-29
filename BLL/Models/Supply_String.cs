@@ -23,5 +23,9 @@ namespace BLL.Models
             SSSupply = ss.supply;
             Id = ss.id;
         }
+
+        public string GoodName { get; set; }
+        public string ShowCost { get; set; }
+        public string ShowAmount { get; set; }
     }
 }

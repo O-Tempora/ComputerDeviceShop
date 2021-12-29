@@ -26,9 +26,10 @@ namespace ComputerDeviceShop
             IMakeOrder _orderServ = kernel.Get<IMakeOrder>();
             IUser _userServ = kernel.Get<IUser>();
             IAccount _accServ = kernel.Get<IAccount>();
+            IFile _file = kernel.Get<IFile>();
             //MainWindow mw = new MainWindow(_crudServ, _catalogServ, _mainServ, _orderServ, _userServ);
             //mw.Show();
-            SignIn si = new SignIn(_crudServ, _catalogServ, _mainServ, _accServ, _userServ, _orderServ);
+            SignIn si = new SignIn(_crudServ, _catalogServ, _mainServ, _accServ, _userServ, _orderServ, _file);
             si.Show();
         }
     }

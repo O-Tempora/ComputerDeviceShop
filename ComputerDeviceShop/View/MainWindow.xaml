@@ -5,99 +5,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerDeviceShop"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:view="clr-namespace:ComputerDeviceShop.View" xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowVM}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:view="clr-namespace:ComputerDeviceShop.View" xmlns:viewmodel="clr-namespace:ComputerDeviceShop.ViewModel"
         mc:Ignorable="d"
-    Title="MainWindow" Height="800" Width="1500" WindowStyle="None" Background="Transparent" AllowsTransparency="True">
-    <Border CornerRadius="60" Background="#272537">
-        <Grid x:Name="WindowGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="3.5*"/>
-            </Grid.ColumnDefinitions>
-            <!--Верхняя панель-->
-            <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,30,0">
-                    <Button
-                        Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
-                        Background="Transparent"
-                        Foreground="White"
-                        BorderBrush="Aqua"
-                        BorderThickness="0"
-                        Margin="4,4,4,4"
-                        Content="{materialDesign:PackIcon WindowMinimize}"/>
-
-                    <Button
-                        Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
-                        Background="Transparent"
-                        Foreground="White"
-                        BorderBrush="Aqua"
-                        BorderThickness="0"
-                        Margin="4,4,4,4"
-                        Content="{materialDesign:PackIcon WindowMaximize}"/>
-
-                    <Button
-                        Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
-                        Background="Transparent"
-                        Foreground="White"
-                        BorderBrush="Aqua"
-                        BorderThickness="0"
-                        Margin="4,4,4,4"
-                        Content="{materialDesign:PackIcon Close}"/>
-                </StackPanel>
-            </Grid>
-            <!--Название-->
-            <Grid Grid.Row="1" Grid.Column="0" Background="#FF232323">
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Aqua" FontSize="35" FontFamily="/ComputerDeviceShop;component/Resources/#Readiculous">
-                    ConputerShop
-                </TextBlock>
-            </Grid>
-            <!--Панель элементов-->
-            <Grid Grid.Column="1" Grid.Row="1" Background="#FF232323">
-                <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" Background="#FF232323" 
-                        Grid.Column="1" Grid.Row="1" materialDesign:ColorZoneAssist.Mode="Standard"                 
-                        VerticalAlignment="Stretch" HorizontalAlignment="Center" TabStripPlacement="Top">
-                    <TabItem Width="150">
-                        <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="AccountCircle" Height="50" Width="50" Foreground="White"/>
-                                <TextBlock Text="Профиль" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <view:AccountUC DataContext="{Binding AccountViewM}" RenderTransformOrigin="0.5,0.5" Margin="-577,0,-243,-680"/>
-                    </TabItem>
-                    <TabItem Width="150">
-                        <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Basket" Height="50" Width="50" Foreground="White"/>
-                                <TextBlock Text="Корзина" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <view:BasketUC DataContext="{Binding BasketViewM}" Margin="-570,0,-236,-680"/>
-                    </TabItem>
-                    <TabItem Width="170">
-                        <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="HomeCircle" Height="50" Width="50" Foreground="White"/>
-                                <TextBlock Text="На главную" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                    </TabItem>
-                    <TabItem Width="150">
-                        <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="BookOpen" Height="50" Width="50" Foreground="White"/>
-                                <TextBlock Text="Каталог" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <view:CatalogUC DataContext="{Binding CatalogViewM}" Margin="-577,0,-240,-676"/>
-                    </TabItem>
-                </TabControl>
-            </Grid>
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="Transparent"
+    Title="MainWindow" Height="1080" Width="1920">
+    <Grid x:Name="WindowGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="1" Background="#FF232323"/>
+        <Grid Grid.Column="1" Grid.Row="1" Background="#FF232323"/>
+        <!--Название-->
+        <Grid Grid.Row="0" Grid.Column="0" Background="#FF232323">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Aqua" FontSize="35" FontFamily="/ComputerDeviceShop;component/Resources/#Readiculous">
+                    ComputerShop
+            </TextBlock>
         </Grid>
-    </Border>
+        <!--Панель элементов-->
+        <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        Grid.Column="1" Grid.Row="0" Background="#FF232323" materialDesign:ColorZoneAssist.Mode="Standard"                 
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TabStripPlacement="Top"
+                        Grid.RowSpan="2">
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountCircle" Height="50" Width="50" Foreground="White"/>
+                        <TextBlock Text="Профиль" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <view:AccountUC DataContext="{Binding AccountViewM}" Margin="-478,0,0,0"/>
+            </TabItem>
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Basket" Height="50" Width="50" Foreground="White"/>
+                        <TextBlock Text="Корзина" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <view:BasketUC DataContext="{Binding BasketViewM}" Margin="-478,0,0,0"/>
+            </TabItem>
+            <TabItem Width="170">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="HomeCircle" Height="50" Width="50" Foreground="White"/>
+                        <TextBlock Text="На главную" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <view:OpenerUC Margin="-478,0,0,0"/>
+            </TabItem>
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="BookOpen" Height="50" Width="50" Foreground="White"/>
+                        <TextBlock Text="Каталог" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <view:CatalogUC DataContext="{Binding CatalogViewM}" Margin="-478,0,0,0"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>

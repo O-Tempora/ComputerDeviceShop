@@ -34,5 +34,7 @@ namespace BLL.Models
         public string ShowArrivalDate { get; set; }
         public string ShowStatus { get; set; }
         public string ShowTotal { get; set; }
+        public string ShowCustomer { get; set; }
+        public string ButtonStatus { get; set; }
     }
 }

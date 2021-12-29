@@ -129,7 +129,10 @@
             <Grid Grid.Row="1" Grid.Column="1" Background="#FF232323">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <TextBlock Text="{Binding ResultingText}" Foreground="Aqua" FontSize="30" HorizontalAlignment="Center" Margin="0,0,0,60" TextWrapping="Wrap"/>
-                    <Button Content="Готово" Width="100" Foreground="Aqua" Background="Transparent" Command="{Binding Return}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Готово" Width="100" Foreground="Aqua" Background="Transparent" Command="{Binding Return}" Margin="0,0,30,0"/>
+                        <Button Content="PDF Чек" Width="100" Foreground="Aqua" Background="Transparent" Command="{Binding GetCheck}"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>

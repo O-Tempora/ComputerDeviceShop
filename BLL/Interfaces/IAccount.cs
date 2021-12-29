@@ -11,5 +11,7 @@ namespace BLL.Interfaces
     {
         List<MOrder> GetAllOrdersByStatus(int customerID, int statusID);
         List<MOrder> GetAllOrders(int customerID);
+        List<MOrder> ManagerOrdersByDateAndStatus(DateTime start, DateTime end, int status, string id);
+        List<MSupply> ManagerSuppliesByDateAndSupplier(DateTime start, DateTime end, int supplierID);
     }
 }

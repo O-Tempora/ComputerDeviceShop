@@ -23,6 +23,7 @@ namespace ComputerDeviceShop.ViewModel
         private readonly IDialogService _dialog;
         private readonly IMakeOrder _order;
         private readonly IAccount _account;
+        private readonly IFile _file;
 
         private string _actualLogin;
         public string ActualLogin //Поле логина
@@ -78,7 +79,7 @@ namespace ComputerDeviceShop.ViewModel
         }
         #endregion
 
-        public UserVM(ICRUD crud, ICatalog catalog, IMainCategory maincat, IAccount account, IUser user, IDialogService dialog, IMakeOrder order)
+        public UserVM(ICRUD crud, ICatalog catalog, IMainCategory maincat, IAccount account, IUser user, IDialogService dialog, IMakeOrder order, IFile file)
         {
             _crud = crud;
             _catalog = catalog;
@@ -87,6 +88,7 @@ namespace ComputerDeviceShop.ViewModel
             _dialog = dialog;
             _order = order;
             _account = account;
+            _file = file;
 
             _actualLogin = "";
             _actualPassword = "";
@@ -152,7 +154,15 @@ namespace ComputerDeviceShop.ViewModel
             else HintAssistTextPassword = null;
 
             validatedCustomerID = _user.GetIdByLogin(ActualLogin);
-            _dialog.MW(_crud, _catalog, _maincat, _account, _order, _user, _dialog, validatedCustomerID);
+            
+            if (_crud.GetCustomer(validatedCustomerID).Login != "admin")
+            {
+                _dialog.MW(_crud, _catalog, _maincat, _account, _order, _user, _dialog, validatedCustomerID, _file);
+            }
+            else
+            {
+                _dialog.AdmW(_crud, _catalog, _maincat, _account, _order, _user, _dialog, validatedCustomerID, _file);
+            }
             Notify?.Invoke();
             //Добавить открытие главного окна (+ передать ID пользователя)
         }
