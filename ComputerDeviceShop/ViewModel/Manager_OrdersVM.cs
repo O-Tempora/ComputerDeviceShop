@@ -166,6 +166,21 @@ namespace ComputerDeviceShop.ViewModel
                 return _filter;
             }
         }
+        private ICommand _pdf;
+        public ICommand PDF
+        {
+            get
+            {
+                if (_pdf == null)
+                    _pdf = new RelayCommand(args => OrdersReport(args));
+                return _pdf;
+            }
+        }
+
+        private void OrdersReport(object args)
+        {
+            _file.ManagerOrdersReport(Orders, StartDate, EndDate);
+        }
 
         private void FilterOrders(object args)
         {

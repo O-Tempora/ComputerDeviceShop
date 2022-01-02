@@ -40,15 +40,6 @@
                 </TabItem.Header>
                 <view:AccountUC DataContext="{Binding AccountViewM}" Margin="-478,0,0,0"/>
             </TabItem>
-            <TabItem Width="150">
-                <TabItem.Header>
-                    <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Basket" Height="50" Width="50" Foreground="White"/>
-                        <TextBlock Text="Корзина" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <view:BasketUC DataContext="{Binding BasketViewM}" Margin="-478,0,0,0"/>
-            </TabItem>
             <TabItem Width="170">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
@@ -57,6 +48,15 @@
                     </StackPanel>
                 </TabItem.Header>
                 <view:OpenerUC Margin="-478,0,0,0"/>
+            </TabItem> 
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Basket" Height="50" Width="50" Foreground="White"/>
+                        <TextBlock Text="Корзина" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <view:BasketUC DataContext="{Binding BasketViewM}" Margin="-478,0,0,0"/>
             </TabItem>
             <TabItem Width="150">
                 <TabItem.Header>

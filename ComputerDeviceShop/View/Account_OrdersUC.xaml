@@ -37,7 +37,7 @@
         
         <!--#region Для заказа-->
         <DataTemplate x:Key="OrderTemplate">
-            <Grid Background="#FF232323" Width="800">
+            <Grid Background="#FF232323" Width="900">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

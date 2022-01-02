@@ -20,9 +20,9 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="NoWrap" Width="350" VerticalAlignment="Center" Grid.Column="0" FontSize="14" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=GoodName}" Foreground="White" />
-                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" FontSize="12" Margin="0,0,10,0" FontWeight="Normal"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowAmount}" Foreground="White"/>
-                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2" FontSize="12" Margin="0,0,10,0" FontWeight="Normal"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowCost}" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="NoWrap" Width="350" VerticalAlignment="Center" Grid.Column="0" FontSize="22" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=GoodName}" Foreground="White" />
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" FontSize="20" Margin="0,0,10,0" FontWeight="Normal"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowAmount}" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2" FontSize="20" Margin="0,0,10,0" FontWeight="Normal"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowCost}" Foreground="White"/>
             </Grid>
         </DataTemplate>
         <!--#endregion-->
@@ -40,10 +40,10 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Margin="0,0,10,0" FontSize="18" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowSupplier}" Foreground="White" />
-                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Margin="0,0,10,0" FontSize="18" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowOrderDate}" Foreground="White" />
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1"  FontSize="16" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowTotal}" Foreground="White" />
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Margin="10,0,0,0" FontSize="16" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowNumber}" Foreground="White" />
+                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Margin="0,0,10,0" FontSize="22" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowSupplier}" Foreground="White" />
+                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Margin="0,0,10,0" FontSize="22" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowOrderDate}" Foreground="White" />
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1"  FontSize="20" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowTotal}" Foreground="White" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Margin="10,0,0,0" FontSize="20" FontWeight="DemiBold"  Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Path=ShowNumber}" Foreground="Aqua" />
 
 
                 <Expander Grid.Row="2" HorizontalAlignment="Stretch" Header="Товары в заказе: " Foreground="White" Background="#FF232323" FontSize="14" FontWeight="DemiBold" Grid.ColumnSpan="2">
@@ -74,33 +74,36 @@
         </DataTemplate>
         <!--#endregion-->
     </UserControl.Resources>
+    
     <Grid Background="#272537">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="6*"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3.5*"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
-                <materialDesign:PackIcon Kind="FileFind" VerticalAlignment="Center" Foreground="Aqua" Height="50" Width="50"/>
-                <ComboBox Height="45" Width="270" BorderBrush="Aqua" Foreground="Aqua" Background="#FF232323"
+        <Grid Grid.Column="0" Background="#FF232323">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="3" Orientation="Vertical" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="FileFind" VerticalAlignment="Center" Foreground="Aqua" Height="50" Width="50"/>
+                    <ComboBox Height="45" Width="250" BorderBrush="Aqua" Foreground="Aqua" Background="#FF232323"
                 FontSize="25" Margin="5,10,0,0"
                 ItemsSource="{Binding Suppliers}"
                 SelectedIndex="{Binding SelectedSupplier}">
-                    <ComboBox.Resources>
-                        <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF232323"/>
-                    </ComboBox.Resources>
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Name}" Background="#FF232323" Foreground="White"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF232323"/>
+                        </ComboBox.Resources>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}" Background="#FF232323" Foreground="White"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
                 <!--<TextBox
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Center"
@@ -115,29 +118,32 @@
                   Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
                   Content="Найти"
                   Command="{Binding Filter}"
-                  Foreground="Aqua" FontSize="14" Background="Transparent" BorderBrush="Aqua"
-                  Margin="20,10,20,0" Height="40" Width="100"/>
+                  Foreground="Aqua" FontSize="18" Background="Transparent" BorderBrush="Aqua"
+                  Margin="20,30,20,0" Height="40" Width="100"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,50,0">
-                    <TextBlock Text="Начальная дата" Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="White" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="15,0,0,0" Width="150"/>
-                    <DatePicker DisplayDateEnd="01.01.2051" DisplayDateStart="01.01.2001" SelectedDate="{Binding StartDate}" Text="Начальная дата" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" materialDesign:CalendarAssist.HeaderBackground="Aqua"  Margin="15,0,0,0" BorderBrush="Aqua" BorderThickness="0,0,0,2" Foreground="White"/>
+            <StackPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                    <TextBlock Text="Начальная дата" Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="White" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="0,0,0,0" Width="150"/>
+                    <DatePicker DisplayDateEnd="01.01.2051" DisplayDateStart="01.01.2001" SelectedDate="{Binding StartDate}" Text="Начальная дата" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240" materialDesign:CalendarAssist.HeaderBackground="Aqua" BorderBrush="Aqua" BorderThickness="0,0,0,2" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Конечная дата" Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="White" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="15,0,0,0" Width="150"/>
-                    <DatePicker DisplayDateEnd="01.01.2051" DisplayDateStart="01.01.2001" SelectedDate="{Binding EndDate}" Text="Конечная дата" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" materialDesign:CalendarAssist.HeaderBackground="Aqua"  Margin="15,0,0,0" BorderBrush="Aqua" BorderThickness="0,0,0,2" Foreground="White"/>
+                    <TextBlock Text="Конечная дата" Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="White" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="0,50,0,0" Width="150"/>
+                    <DatePicker DisplayDateEnd="01.01.2051" DisplayDateStart="01.01.2001" SelectedDate="{Binding EndDate}" Text="Конечная дата" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240" materialDesign:CalendarAssist.HeaderBackground="Aqua" BorderBrush="Aqua" BorderThickness="0,0,0,2" Foreground="White"/>
                 </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock FontSize="26" Foreground="Aqua" Text="Информация о Поставках"/>
+                <Button Height="50" Width="250" Background="Transparent" Foreground="Aqua" BorderBrush="Aqua" Margin="0,60,0,0" Command="{Binding PDF}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="FileDocument" Height="30" Width="30"/>
+                        <TextBlock Foreground="Aqua" FontSize="18" Text="Получить отчет в PDF" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <ScrollViewer Grid.Column="1" Background="#272537" Margin="0" VerticalScrollBarVisibility="Auto">
+        <Grid Grid.Column="1">
+            <ScrollViewer Background="#272537" Margin="0,40,0,40" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="listView" ItemsSource="{Binding Supplies}" ItemTemplate="{StaticResource OrderTemplate}" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

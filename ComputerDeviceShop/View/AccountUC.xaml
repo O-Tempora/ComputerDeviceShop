@@ -16,7 +16,7 @@
         <TabControl Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
         materialDesign:ColorZoneAssist.Mode="Standard" Background="#FF232323" TabStripPlacement="Top" 
         VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <TabItem Width="150">
+            <!--<TabItem Width="150">
                 <TabItem.Header>
                     <StackPanel Height="auto" Width="auto" Orientation="Vertical" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="BookInformationVariant" Height="50" Width="50" Foreground="White" HorizontalAlignment="Center"/>
@@ -24,6 +24,15 @@
                     </StackPanel>
                 </TabItem.Header>
                 <view:Account_StatisticsUC/>
+            </TabItem>-->
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <StackPanel Height="auto" Width="auto" Orientation="Vertical" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="AccountCheck" Height="50" Width="50" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Об аккаунте" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <view:Account_AboutUC DataContext="{Binding Account_About_View_M}"/>
             </TabItem>
             <TabItem Width="150">
                 <TabItem.Header>
@@ -33,15 +42,6 @@
                     </StackPanel>
                 </TabItem.Header>
                 <view:Account_OrdersUC DataContext="{Binding Account_Orders_View_M}"/>
-            </TabItem>
-            <TabItem Width="150">
-                <TabItem.Header>
-                    <StackPanel Height="auto" Width="auto" Orientation="Vertical" HorizontalAlignment="Center">
-                        <materialDesign:PackIcon Kind="AccountCheck" Height="50" Width="50" Foreground="White" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Об аккаунте" Foreground="White" VerticalAlignment="Center" FontSize="20"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <view:Account_AboutUC DataContext="{Binding Account_About_View_M}"/>
             </TabItem>
         </TabControl>
     </Grid>

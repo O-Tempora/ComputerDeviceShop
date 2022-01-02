@@ -138,5 +138,21 @@ namespace ComputerDeviceShop.ViewModel
         {
             Reevaluate();
         }
+
+        private ICommand _pdf;
+        public ICommand PDF
+        {
+            get
+            {
+                if (_pdf == null)
+                    _pdf = new RelayCommand(args => SupplyReport(args));
+                return _pdf;
+            }
+        }
+
+        private void SupplyReport(object args)
+        {
+            _file.ManagerSuppliesReport(Supplies, StartDate, EndDate);
+        }
     }
 }

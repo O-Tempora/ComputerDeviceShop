@@ -7,15 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="#272537">
+        <Grid Background="#272537">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Foreground="Aqua" FontSize="45" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Добро пожаловать в CDS!" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="0" Foreground="Aqua" FontSize="65" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Добро пожаловать в CDS!" TextWrapping="Wrap"/>
         </Grid>
     </Grid>
 </UserControl>
